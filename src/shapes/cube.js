@@ -298,13 +298,13 @@ export default class Cube {
       this.gl.enable(this.gl.BLEND);
       this.gl.disable(this.gl.DEPTH_TEST);
       // Pass alpha uniform to shader
-      this.gl.uniform1f(this.shaderProgram.variableMap.isBlendUniform, true);
+      this.gl.uniform1i(this.shaderProgram.variableMap.isBlendUniform, true);
       this.gl.uniform1f(this.shaderProgram.variableMap.alphaUniform, this.blendAlpha);
     }
     else {
       this.gl.enable(this.gl.DEPTH_TEST)
       this.gl.disable(this.gl.BLEND)
-      this.gl.uniform1f(this.shaderProgram.variableMap.isBlendUniform, false);
+      this.gl.uniform1i(this.shaderProgram.variableMap.isBlendUniform, false);
     }
 
     // Pass vertex position into shader
@@ -325,7 +325,7 @@ export default class Cube {
     this.gl.vertexAttribPointer(this.shaderProgram.variableMap.vertexNormalAttribute, this.cubeVertexNormalBuffer.info.itemSize, this.gl.FLOAT, false, 0, 0)
     
     // Add light
-    this.gl.uniform1i(this.shaderProgram.variableMap.useLightingUniform, this.useLight)
+    this.gl.uniform1i(this.shaderProgram.variableMap.useLightingUniform, !!this.useLight)
     this.gl.uniform3f(this.shaderProgram.variableMap.ambientColorUniform, this.ambientColor[0], this.ambientColor[1], this.ambientColor[2])
     this.gl.uniform3f(this.shaderProgram.variableMap.directionalColorUniform, this.directionalColor[0], this.directionalColor[1], this.directionalColor[2])
 

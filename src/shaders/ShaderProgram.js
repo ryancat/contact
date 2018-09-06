@@ -16,7 +16,7 @@ const defaultUniformMap = {
   directionalColorUniform: 'uDirectionalColor',
   lightingDirectionUniform: 'uLightingDirection',
   nMatrixUniform: 'uNMatrix',
-  isBlendUniform: 'uisBlend',
+  isBlendUniform: 'uIsBlend',
   alphaUniform: 'uAlpha'
 }
 

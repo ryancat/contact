@@ -22,11 +22,11 @@ void main (void) {
   vTextureCoord = aTextureCoord;
 
   if (uUseLighting) {
-    vLightWeighting = vec3(1.0, 1.0, 1.0);
-  } else {
     vec3 transformedNormal = uNMatrix * aVertexNormal;
     float directionalLightWeighting = max(0.0, dot(transformedNormal, uLightingDirection));
     vLightWeighting = uAmbientColor + uDirectionalColor * directionalLightWeighting;
+  } else {
+    vLightWeighting = vec3(1.0, 1.0, 1.0);
   }
 }
 `
