@@ -61,7 +61,7 @@ export default class Scene {
     this.gl.viewport(0, 0, this.canvas.width, this.canvas.height)
     this.gl.clear(this.gl.COLOR_BUFFER_BIT | this.gl.DEPTH_BUFFER_BIT)
     
-    mat4.perspective(this.projectionMatrix, 45, this.canvas.width / this.canvas.height, 0.1, 100)
+    mat4.perspective(this.projectionMatrix, 120, this.canvas.width / this.canvas.height, 0.1, 500)
     mat4.identity(this.modelViewMatrix)
     
     this.models.forEach(model => model.draw(dt))

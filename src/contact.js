@@ -1,5 +1,6 @@
 import Scene from './Scene'
 import Cube from './shapes/cube'
+import Sphere from './shapes/sphere'
 import ShaderProgram from './shaders/ShaderProgram'
 import gameState from './gameState'
 
@@ -84,12 +85,17 @@ class Game {
     })
 
     // The init logic goes below
-    let cube = new Cube({
+    // let cube = new Cube({
+    //   shaderProgram: this.shaderProgram,
+    //   scene: this.scene
+    // })
+
+    // this.scene.addModel(cube)
+
+    this.scene.addModel(new Sphere({
       shaderProgram: this.shaderProgram,
       scene: this.scene
-    })
-
-    this.scene.addModel(cube)
+    }))
   }
 
   handleKeydown (e) {
