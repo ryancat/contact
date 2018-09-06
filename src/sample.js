@@ -1,4 +1,4 @@
-import samplePng from './textures/duck.png'
+import textureSrc from './textures/duck.png'
 
 const canvas = document.getElementById('stage')
 let gl
@@ -793,16 +793,16 @@ function initTexture () {
   }
   
   // Need to request CORS (Cross Origin Resource Sharing)
-  // image.crossOrigin = ''
+  image.crossOrigin = ''
   // Can only use power of 2 size images
   // image.src = 'https://cdn6.aptoide.com/imgs/8/5/f/85fd58c917dbf46ae064da7c7299182e_icon.png'
   // image.src = 'https://c2.staticflickr.com/4/3408/3271626596_33347fac19_o.png'
   // image.src = '../crate.gif'
-  image.src = samplePng
+  image.src = textureSrc
 }
 
 function init () {
-  for (let i = 0; i < 2; i++) {
+  for (let i = 0; i < 20; i++) {
     cubes.push(new Cube({
       isBlend: true,
       x: Math.random() * 20 - 10,

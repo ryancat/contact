@@ -3,7 +3,8 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 module.exports = {
   entry: {
-    'contact': './src/contact.js'
+    'contact': './src/contact.js',
+    'sample': './src/sample.js'
   },
 
   output: {
@@ -30,6 +31,9 @@ module.exports = {
     new CopyWebpackPlugin([{
       from: './src/index.html',
       to: './index.html'
+    }, {
+      from: './lib',
+      to: './lib'
     }])
   ]
 }
