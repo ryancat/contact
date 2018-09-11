@@ -1,4 +1,5 @@
 import shapeUtil from './shapeUtil'
+import gameUtil from '../gameUtil'
 import defaultTextureSrc from '../textures/duck.png'
 import gameState from '../gameState'
 
@@ -285,9 +286,9 @@ export default class Cube {
   }
 
   animate (dt) {
-    this.rotateX += shapeUtil.degToRad(dt * this.rotateSpeedX) / 100
-    this.rotateY += shapeUtil.degToRad(dt * this.rotateSpeedY) / 100
-    this.rotateZ += shapeUtil.degToRad(dt * this.rotateSpeedZ) / 100
+    this.rotateX += gameUtil.degToRad(dt * this.rotateSpeedX) / 100
+    this.rotateY += gameUtil.degToRad(dt * this.rotateSpeedY) / 100
+    this.rotateZ += gameUtil.degToRad(dt * this.rotateSpeedZ) / 100
   }
 
   draw () {
@@ -340,9 +341,9 @@ export default class Cube {
     // Transform model view matrix
     this.scene.modelViewPushMatrix()
     mat4.translate(this.scene.modelViewMatrix, this.scene.modelViewMatrix, [this.x, this.y, this.z])
-    mat4.rotate(this.scene.modelViewMatrix, this.scene.modelViewMatrix, this.rotateX, shapeUtil.xAxis)
-    mat4.rotate(this.scene.modelViewMatrix, this.scene.modelViewMatrix, this.rotateY, shapeUtil.yAxis)
-    mat4.rotate(this.scene.modelViewMatrix, this.scene.modelViewMatrix, this.rotateZ, shapeUtil.zAxis)
+    mat4.rotate(this.scene.modelViewMatrix, this.scene.modelViewMatrix, this.rotateX, gameUtil.xAxis)
+    mat4.rotate(this.scene.modelViewMatrix, this.scene.modelViewMatrix, this.rotateY, gameUtil.yAxis)
+    mat4.rotate(this.scene.modelViewMatrix, this.scene.modelViewMatrix, this.rotateZ, gameUtil.zAxis)
     
     // Pass the model view matrix, projection matrix and normal matrix into shader
     this.scene.setUniformMatrix()
