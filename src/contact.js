@@ -5,11 +5,6 @@ import ShaderProgram from './shaders/ShaderProgram'
 import gameState from './gameState'
 
 // Entry file for contact game
-
-/***** Global States *****/
-// Game frame per second
-const fps = 60
-
 /***** Game class *****/
 class Game {
   constructor (gameOptions = {}) {
@@ -92,10 +87,40 @@ class Game {
 
     // this.scene.addModel(cube)
 
-    this.scene.addModel(new Sphere({
-      shaderProgram: this.shaderProgram,
-      scene: this.scene
-    }))
+    // Create the universe!
+    // The whole universe is a huge cube. Each star occupies a fraction of that cube.
+    // Player will start at a random position in the universe
+    // The home star will start at another random position in the universe
+    // Put the player at the 
+    for (let xi = 0; xi < gameState.universeXCount; xi++) {
+      for (let yi = 0; yi < gameState.universeYCount; yi++) {
+        for (let zi = 0; zi < gameState.universeZCount; zi++) {
+
+          const radius = Math.random() * gameState.universeBlockSize / 2
+          
+          const x0 = (xi - gameState.universeXCount / 2) * gameState.universeBlockSize + radius
+          const x1 = (xi + 1 - gameState.universeXCount / 2) * gameState.universeBlockSize - radius
+          const x = x0 + (x1 - x0) * Math.random()
+
+          const y0 = (yi - gameState.universeYCount / 2) * gameState.universeBlockSize + radius
+          const y1 = (yi + 1 - gameState.universeYCount / 2) * gameState.universeBlockSize - radius
+          const y = y0 + (y1 - y0) * Math.random()
+
+          const z0 = (zi - gameState.universeZCount / 2) * gameState.universeBlockSize + radius
+          const z1 = (zi + 1 - gameState.universeZCount / 2) * gameState.universeBlockSize - radius
+          const z = z0 + (z1 - x0) * Math.random()
+
+          this.scene.addModel(new Sphere({
+            shaderProgram: this.shaderProgram,
+            scene: this.scene,
+            x,
+            y,
+            z,
+            radius
+          }))
+        }
+      }
+    }
   }
 
   handleKeydown (e) {
@@ -142,7 +167,7 @@ class Game {
 
 // Create game instance
 const contactGame = new Game({
-  fps: 60,
+  fps: gameState.fps,
   canvas: document.getElementById('stage')
 })
 
